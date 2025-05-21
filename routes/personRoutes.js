@@ -17,15 +17,15 @@ router.post("/", async (req, res) => {
 // Route to get all persons
 router.get("/", async (req, res) => {
   try {
-    const persons = await Person.find();
-    res.json(persons);
+    const Persons = await Person.find();
+    res.json(Persons);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Route to add multiple persons
-router.post("/persons", async (req, res) => {
+router.post("/Persons", async (req, res) => {
   try {
     // Check if the request body is an array
     if (!Array.isArray(req.body)) {
@@ -91,14 +91,15 @@ router.delete("/:id", async (req, res) => {
     const response = await Person.findByIdAndDelete(personId);
     if (!response) {
       return res.status(404).json({ error: "Person not found" });
-    }
+    } 
     console.log("data deleted successfully");
     res.status(200).json({ message: "Person deleted successfully" });
   } catch (error) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
-});
+}
+);
 
 // export the router
 module.exports = router;
